@@ -1,0 +1,49 @@
+## فایل .gitignore
+
+```gitignore
+# فایل های کامپایل شده
+/target/
+**/*.rs.bk
+
+
+# فایل های اجرایی
+*.exe
+*.out
+*.app
+
+
+
+# فایل های IDE
+.DS_Store
+*.swp
+*.swo
+.idea/
+.vscode/
+
+# فایل های سیستم عامل
+.DS_Store
+Thumbs.db
+
+# فایل های لاگ
+*.log
+
+# فایل های پروفایلینگ
+*.profdata
+*.gcno
+*.gcda
+
+# فایل های مستندسازی
+/doc/
+
+# فایل های محیطی
+.env
+*.env
+
+# فایل های بکاپ
+*.bak
+*.backup
+
+
+# فایل های موقت
+*.rs.bk
+.rustc_info.json
