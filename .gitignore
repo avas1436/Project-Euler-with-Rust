@@ -1,15 +1,17 @@
-## فایل .gitignore
 
-```gitignore
 # فایل های کامپایل شده
-/target/
+target/
+**/target/
 **/*.rs.bk
-
+Cargo.lock
 
 # فایل های اجرایی
 *.exe
+*.exe.*
 *.out
 *.app
+*.dmg
+*.pdb
 
 
 
@@ -19,13 +21,21 @@
 *.swo
 .idea/
 .vscode/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
 
 # فایل های سیستم عامل
 .DS_Store
 Thumbs.db
+ehthumbs.db
+Desktop.ini
 
 # فایل های لاگ
 *.log
+logs/
 
 # فایل های پروفایلینگ
 *.profdata
@@ -34,16 +44,29 @@ Thumbs.db
 
 # فایل های مستندسازی
 /doc/
+/target/doc/
 
 # فایل های محیطی
 .env
 *.env
+.env.local
+
 
 # فایل های بکاپ
 *.bak
 *.backup
+*.old
 
 
 # فایل های موقت
 *.rs.bk
 .rustc_info.json
+*.tmp
+*.temp
+
+# فایل های Cargo
+Cargo.lock
+
+# فایل های کَش
+.cache/
+*.cache
