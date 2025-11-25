@@ -2,5 +2,18 @@
 name = "Rust-Euler"
 version = "0.1.0"
 edition = "2024"
+description = "Project Euler solutions in Rust"
+authors = ["Amir abAs abas.zade@outlook.com"]
+
 
 [dependencies]
+
+
+[[bin]]
+name = "problem_001"
+path = "src/bin/problem_001.rs"
+
+
+[[bin]]
+name = "problem_002"
+path = "src/bin/problem_001.rs"
