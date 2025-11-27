@@ -2,12 +2,21 @@ use std::io;
 
 fn main() {
     let num: u64 = take_number();
-    for i in (((num as f64).sqrt() as u64)..num).rev() {
+    for i in (2..=(num / 2) + 1).rev() {
+        if is_prime(num) {
+            println!("Your number is prime !!");
+            break;
+        };
         if num % i == 0 && is_prime(i) {
             println!("The biggest prime factor of {} is {}", num, i);
             break;
         };
     }
+
+    // زدن اینتر برای خروج از برنامه
+    println!("Press Enter to exit...");
+    let mut dummy = String::new();
+    io::stdin().read_line(&mut dummy).unwrap();
 }
 
 // let mut n: bool = false;
@@ -30,13 +39,11 @@ fn is_prime(n: u64) -> bool {
         return false;
     };
 
-    let mut i: u64 = 3;
-
-    while i * i < n {
+    let limit = (n as f64).sqrt() as u64;
+    for i in (3..=limit).step_by(2) {
         if n % i == 0 {
             return false;
-        };
-        i += 2;
+        }
     }
     true
 }
