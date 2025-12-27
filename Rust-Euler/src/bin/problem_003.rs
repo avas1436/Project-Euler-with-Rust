@@ -2,16 +2,19 @@ use std::io;
 
 fn main() {
     let num: u64 = take_number();
-    for i in (2..=(num / 2) + 1).rev() {
-        if is_prime(num) {
+    let mut last: u64 = 1;
+    let mut factor: u64 = 2;
+    if is_prime(num) {
             println!("Your number is prime !!");
-            break;
+            return;
         };
-        if num % i == 0 && is_prime(i) {
-            println!("The biggest prime factor of {} is {}", num, i);
-            break;
+    while factor * factor <= num {
+        if num % factor == 0 && is_prime(factor) {
+            last = factor
         };
-    }
+        factor += 1;
+    };
+    println!("Biggest prime factor of {} is : {}", num, last);
 
     // زدن اینتر برای خروج از برنامه
     println!("Press Enter to exit...");
@@ -19,14 +22,6 @@ fn main() {
     io::stdin().read_line(&mut dummy).unwrap();
 }
 
-// let mut n: bool = false;
-
-// for i in (1..30).rev() {
-//     n = is_prime(i);
-//     if n {
-//         println!("number {} is prime", i);
-//     }
-// }
 
 fn is_prime(n: u64) -> bool {
     if n <= 1 {
