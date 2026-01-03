@@ -7,7 +7,7 @@ authors = ["Amir abAs abas.zade@outlook.com"]
 
 
 [dependencies]
-
+criterion = "0.5"
 
 [[bin]]
 name = "problem_001"
@@ -22,3 +22,7 @@ path = "src/bin/problem_002.rs"
 [[bin]]
 name = "problem_003"
 path = "src/bin/problem_003.rs"
+
+[[bin]]
+name = "problem_004"
+path = "src/bin/problem_004.rs"
