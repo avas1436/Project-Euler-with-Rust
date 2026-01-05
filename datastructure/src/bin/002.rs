@@ -6,10 +6,23 @@
 // Given an array of numbers arr, return true if the array can be rearranged to form an
 // arithmetic progression. Otherwise, return false.
 
+// نمیخواهم داده را clone کنم و همزمان نمی توانم امضای تابع را هم تغییر دهم پس از روش ریاضی می روم.
 struct Solution;
 
 impl Solution {
-    pub fn can_make_arithmetic_progression(arr: Vec<i32>) -> bool {}
+    pub fn can_make_arithmetic_progression(arr: Vec<i32>) -> bool {
+        let index = arr.len();
+        let slice = &mut arr[0..index];
+        slice.sort();
+        let difference: i32 = slice[1] - slice[0];
+
+        for i in 2..index {
+            if slice[i] - slice[i - 1] != difference {
+                return false;
+            }
+        }
+        return true;
+    }
 }
 
 fn main() {
