@@ -1,0 +1,11 @@
+[package]
+name = "system"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+
+
+[[bin]]
+name = "001"
+path = "src/bin/001.rs"
