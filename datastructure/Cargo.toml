@@ -30,3 +30,6 @@ path = "src/bin/005.rs"
 [[bin]]
 name = "006"
 path = "src/bin/006.rs"
+
+[dependencies]
+hashlink = "0.11.0"
