@@ -7,14 +7,15 @@ fn answare(leng: u128) -> u128 {
     loop {
         (b, a) = (a + b, b);
         step += 1;
-        let len = digit_number(b);
+        println!("step is : {step}, num is : {b}");
+        let len = number_of_digits(b);
         if len == leng {
             return step;
         }
     }
 }
 
-fn digit_number(number: u128) -> u128 {
+fn number_of_digits(number: u128) -> u128 {
     let mut len = 0;
     let mut num = number.clone();
     while num != 0 {
