@@ -7,13 +7,24 @@ fn answare(leng: u128) -> u128 {
     loop {
         (b, a) = (a + b, b);
         step += 1;
-        if b.to_string().len() == leng as usize {
+        let len = digit_number(b);
+        if len == leng {
             return step;
         }
     }
 }
 
+fn digit_number(number: u128) -> u128 {
+    let mut len = 0;
+    let mut num = number.clone();
+    while num != 0 {
+        num /= 10;
+        len += 1;
+    }
+    len
+}
+
 fn main() {
-    let ans: u128 = answare(50);
+    let ans: u128 = answare(100);
     println! {"the answare is {ans}"};
 }
