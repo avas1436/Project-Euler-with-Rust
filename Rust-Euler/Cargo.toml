@@ -8,6 +8,7 @@ authors = ["Amir abAs abas.zade@outlook.com"]
 
 [dependencies]
 criterion = "0.5"
+num-bigint = "0.4"
 
 [[bin]]
 name = "problem_001"
