@@ -1,6 +1,11 @@
+use std::time::Instant;
+
 fn main() {
+    let t1 = Instant::now();
     let ans = answare(13);
-    println!("{ans}");
+    let t2 = t1.elapsed();
+    println!("Problem Solve in {:?}", t2);
+    println!("The answare is : {ans}");
 }
 
 fn answare(length: usize) -> u128 {
