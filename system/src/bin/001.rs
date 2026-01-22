@@ -16,23 +16,48 @@
 use hashlink::LinkedHashMap;
 
 struct LRUCache {
-    capacity: i32,
+    capacity: usize,
     cache: LinkedHashMap<i32, i32>,
 }
 
 impl LRUCache {
-    fn new(capacity: i32) -> Self {}
+    fn new(capacity: usize) -> Self {
+        LRUCache {
+            capacity,
+            cache: LinkedHashMap::new(),
+        }
+    }
 
-    fn get(&self, key: i32) -> i32 {}
+    fn get(&mut self, key: i32) -> i32 {
+        if let Some(val) = self.cache.remove(&key) {
+            self.cache.insert(key, val);
+            val
+        } else {
+            -1
+        }
+    }
 
-    fn put(&self, key: i32, value: i32) {}
+    fn put(&mut self, key: i32, value: i32) {
+        if self.cache.contains_key(&key) {
+            self.cache.remove(&key);
+            self.cache.insert(key, value);
+        } else if self.cache.len() >= self.capacity {
+            self.cache.pop_front();
+            self.cache.insert(key, value);
+        } else {
+            self.cache.insert(key, value);
+            if self.cache.len() >= self.capacity {
+                self.cache.pop_front();
+            }
+        }
+    }
 }
 
 fn main() {
     let commands = vec![
         "LRUCache", "put", "put", "get", "put", "get", "put", "get", "get", "get",
     ];
-    let args = vec![
+    let args: Vec<Vec<i32>> = vec![
         vec![2],
         vec![1, 1],
         vec![2, 2],
@@ -45,7 +70,7 @@ fn main() {
         vec![4],
     ];
 
-    let mut cache = LRUCache::new(args[0][0]);
+    let mut cache = LRUCache::new(args[0][0] as usize);
     let mut results: Vec<Option<i32>> = Vec::new();
 
     for (i, cmd) in commands.iter().enumerate().skip(1) {
