@@ -53,3 +53,14 @@ fn answare(length: usize) -> u128 {
     }
     maximum
 }
+
+#[cfg(test)]
+mod tests {
+    use crate::answare;
+    #[test]
+    fn it_works() {
+        let result: u128 = answare(13);
+        let except: u128 = 23514624000;
+        assert_eq!(result, except);
+    }
+}
