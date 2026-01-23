@@ -1,9 +1,14 @@
 // problem number 25 of euler project
 // 1000-digit Fibonacci Number
 
+use std::time::Instant;
+
 fn main() {
+    let start = Instant::now();
     let ans = fibonacci_sequence_contain_digits(1000);
-    println! {"the answare is : {}", ans};
+    let finish = start.elapsed();
+    println!("Problem solved in {:?}", finish);
+    println! {"The answare is : {}", ans};
 }
 
 fn fibonacci_sequence_contain_digits(digits: usize) -> usize {
