@@ -2,15 +2,24 @@
 // 1000-digit Fibonacci Number
 
 fn main() {
-    // let ans: u128 = answare(1000);
-    println! {"the answare is : "};
+    let ans = fibonacci_sequence_contain_digits(1000);
+    println! {"the answare is : {}", ans};
 }
 
-// fn fibonacci_sequence_contain_digits(digits: usize) -> usize {
-//     let index: usize = digits;
-//     println!("ok");
-//     index
-// }
+fn fibonacci_sequence_contain_digits(digits: usize) -> usize {
+    let mut a = "1".to_string();
+    let mut b = "1".to_string();
+    let mut index: usize = 2;
+    loop {
+        index += 1;
+        (b, a) = (sum_strings(&a, &b), b);
+        if b.len() == digits {
+            println!("The first {}-digit fibonacci sequence is : {}", digits, b);
+            break;
+        }
+    }
+    index
+}
 
 fn sum_strings(a: &str, b: &str) -> String {
     let mut carry = 0;
@@ -48,9 +57,11 @@ fn sum_strings(a: &str, b: &str) -> String {
 // test
 #[cfg(test)]
 mod tests {
-    // use crate::fibonacci_sequence_contain_digits;
+    use crate::fibonacci_sequence_contain_digits;
     use crate::sum_strings;
 
+    //////////////////////////////////////////////////
+    /// sum_strings
     #[test]
     fn sum_1() {
         let result = sum_strings("1", "1");
@@ -84,5 +95,21 @@ mod tests {
         let result = sum_strings("0", "0");
         println!("Result of 0 + 0 is : {}", result);
         assert_eq!(result, "0");
+    }
+    //////////////////////////////////////////////////
+    //////////////////////////////////////////////////
+
+    #[test]
+    fn first_2_digit() {
+        let result = fibonacci_sequence_contain_digits(2);
+        println!("The first 2-digit fib-seq index is : {}", result);
+        assert_eq!(result, 7);
+    }
+
+    #[test]
+    fn first_3_digit() {
+        let result = fibonacci_sequence_contain_digits(3);
+        println!("The first 3-digit fib-seq index is : {}", result);
+        assert_eq!(result, 12);
     }
 }
