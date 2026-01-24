@@ -6,16 +6,12 @@ fn main() {}
 
 struct ColatzCalculator {
     cache: HashMap<u128, usize>,
-    start: u128,
-    end: u128,
 }
 
 impl ColatzCalculator {
     fn new() -> Self {
         Self {
             cache: HashMap::new(),
-            start: 1,
-            end: 2_000_000,
         }
     }
     fn collatz_length(&mut self, number: u128) -> usize {
@@ -24,7 +20,7 @@ impl ColatzCalculator {
         let mut step: usize = 1;
         while num != 1 {
             if let Some(&length) = self.cache.get(&num) {
-                let total = step + length;
+                let total = step + length - 1;
                 self.cache.insert(number, total);
                 return total;
             }
@@ -39,7 +35,7 @@ impl ColatzCalculator {
         step
     }
 
-    fn max_collatz_range(&mut self, start: u128, end: u128) -> usize {
+    fn max_collatz_range(&mut self, start: u128, end: u128) -> (u128, usize) {
         // calculate the maximum of the collatz sequence length
         let mut max_leng: usize = 0;
         let mut num_max_leng: u128 = 0;
@@ -52,10 +48,7 @@ impl ColatzCalculator {
             }
             num += 1;
         }
-        println!(
-            "Max collatz sequence bellow {end} is for number {num_max_leng} and its length is : {max_leng}"
-        );
-        max_leng
+        (num_max_leng, max_leng)
     }
 }
 
@@ -135,5 +128,61 @@ mod tests {
             .given_a_starting_number(7)
             .when_i_calculate_the_sequence_length()
             .then_the_result_should_be(17);
+    }
+
+    #[test]
+    fn calculate_length_of_the_collatz_sequence_for_nine() {
+        CollatzWorld::new()
+            .given_a_starting_number(9)
+            .when_i_calculate_the_sequence_length()
+            .then_the_result_should_be(20);
+    }
+
+    #[test]
+    fn max_collatz_in_small_range() {
+        let mut calc = ColatzCalculator::new();
+        let max_len = calc.max_collatz_range(1, 10);
+        assert_eq!(max_len, (9, 20));
+    }
+
+    #[test]
+    fn max_collatz_single_number_range() {
+        let mut calc = ColatzCalculator::new();
+        let max_len = calc.max_collatz_range(13, 14);
+        assert_eq!(max_len, (13, 10));
+    }
+
+    #[test]
+    fn max_collatz_non_one_start() {
+        let mut calc = ColatzCalculator::new();
+        let max_len = calc.max_collatz_range(10, 20);
+        assert_eq!(max_len, (18, 21));
+    }
+
+    #[test]
+    fn max_collatz_reuse_cache() {
+        let mut calc = ColatzCalculator::new();
+
+        let first = calc.max_collatz_range(1, 100_000);
+        let second = calc.max_collatz_range(1, 100_000);
+
+        assert_eq!(first, second);
+    }
+
+    #[test]
+    fn max_collatz_reuse_cache_for_six() {
+        let mut calc = ColatzCalculator::new();
+
+        let first = calc.max_collatz_range(1, 6);
+        let second = calc.max_collatz_range(1, 6);
+
+        assert_eq!(first, second);
+    }
+
+    #[test]
+    fn max_collatz_under_one_million() {
+        let mut calc = ColatzCalculator::new();
+        let max_len = calc.max_collatz_range(1, 1_000_000);
+        assert_eq!(max_len, (837799, 525));
     }
 }
