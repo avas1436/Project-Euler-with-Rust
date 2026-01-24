@@ -1,11 +1,22 @@
 use std::collections::HashMap;
+use std::time::Instant;
 
 // collatz sequence
 // Solve problem in BDD method:
-fn main() {}
+fn main() {
+    let start = Instant::now();
+    let mut answare = ColatzCalculator::new();
+    let (number, length) = answare.max_collatz_range(1, 2_000_000);
+    let end = start.elapsed();
+    println!("Problem Solved In {:?}", end);
+    println!(
+        "The longest Collatz sequence below 2,000,000 starts at {} and has length {}.",
+        number, length
+    );
+}
 
 struct ColatzCalculator {
-    cache: HashMap<u128, usize>,
+    cache: HashMap<usize, usize>,
 }
 
 impl ColatzCalculator {
@@ -14,7 +25,7 @@ impl ColatzCalculator {
             cache: HashMap::new(),
         }
     }
-    fn collatz_length(&mut self, number: u128) -> usize {
+    fn collatz_length(&mut self, number: usize) -> usize {
         // calculate the collatz sequence length
         let mut num = number;
         let mut step: usize = 1;
@@ -35,10 +46,10 @@ impl ColatzCalculator {
         step
     }
 
-    fn max_collatz_range(&mut self, start: u128, end: u128) -> (u128, usize) {
+    fn max_collatz_range(&mut self, start: usize, end: usize) -> (usize, usize) {
         // calculate the maximum of the collatz sequence length
         let mut max_leng: usize = 0;
-        let mut num_max_leng: u128 = 0;
+        let mut num_max_leng: usize = 0;
         let mut num = start;
         while num < end {
             let leng = self.collatz_length(num);
@@ -64,7 +75,7 @@ mod tests {
 
     // ----------- World / Context -----------
     struct CollatzWorld {
-        number: u128,
+        number: usize,
         calculator: ColatzCalculator,
         result: Option<usize>,
     }
@@ -79,7 +90,7 @@ mod tests {
         }
 
         // ----------- Given ----------------
-        fn given_a_starting_number(mut self, number: u128) -> Self {
+        fn given_a_starting_number(mut self, number: usize) -> Self {
             self.number = number;
             self
         }
