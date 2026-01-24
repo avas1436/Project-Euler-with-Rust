@@ -1,0 +1,3 @@
+// collatz sequence
+
+fn main() {}
