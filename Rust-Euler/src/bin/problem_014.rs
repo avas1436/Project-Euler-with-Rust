@@ -35,11 +35,11 @@ impl ColatzCalculator {
                 self.cache.insert(number, total);
                 return total;
             }
-            if num % 2 == 0 {
+            if num.is_multiple_of(2) {
                 num /= 2;
                 step += 1;
             } else {
-                num = ((3 * num) + 1) / 2;
+                num = (3 * num).div_ceil(2);
                 step += 2;
             }
         }
