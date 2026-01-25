@@ -30,7 +30,7 @@ impl AmicableNumbers {
             cache: HashMap::new(),
         }
     }
-    fn sum_of_proper_divisors(number: usize) {
+    fn sum_of_proper_divisors(number: usize) -> usize {
         todo!("this function should calculate sum of divisors of a number");
     }
 
@@ -40,5 +40,22 @@ impl AmicableNumbers {
 
     fn sum_amicables(limit: usize) -> usize {
         todo!("this function iterate from 1 to limit and sum all amicable numbers");
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_sum_of_220_divisors() {
+        let result = AmicableNumbers::sum_of_proper_divisors(220);
+        assert_eq!(result, 284);
+    }
+
+    #[test]
+    fn test_sum_of_284_divisors() {
+        let result = AmicableNumbers::sum_of_proper_divisors(220);
+        assert_eq!(result, 220);
     }
 }
