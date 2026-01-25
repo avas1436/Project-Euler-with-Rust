@@ -5,15 +5,15 @@ fn main() {
     let mut last: u64 = 1;
     let mut factor: u64 = 2;
     if is_prime(num) {
-            println!("Your number is prime !!");
-            return;
-        };
+        println!("Your number is prime !!");
+        return;
+    };
     while factor * factor <= num {
         if num % factor == 0 && is_prime(factor) {
             last = factor
         };
         factor += 1;
-    };
+    }
     println!("Biggest prime factor of {} is : {}", num, last);
 
     // زدن اینتر برای خروج از برنامه
@@ -21,7 +21,6 @@ fn main() {
     let mut dummy = String::new();
     io::stdin().read_line(&mut dummy).unwrap();
 }
-
 
 fn is_prime(n: u64) -> bool {
     if n <= 1 {
