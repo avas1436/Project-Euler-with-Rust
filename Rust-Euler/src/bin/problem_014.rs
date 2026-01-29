@@ -29,6 +29,8 @@ impl ColatzCalculator {
         // calculate the collatz sequence length
         let mut num = number;
         let mut step: usize = 1;
+        let mut stack: Vec<usize> = Vec::new();
+
         while num != 1 {
             if let Some(&length) = self.cache.get(&num) {
                 let total = step + length - 1;
@@ -42,6 +44,13 @@ impl ColatzCalculator {
                 num = (3 * num).div_ceil(2);
                 step += 2;
             }
+            stack.push(num);
+        }
+
+        let mut step_stack: usize = 1;
+        while let Some(s) = stack.pop() {
+            self.cache.insert(s, step_stack);
+            step_stack += 1;
         }
         self.cache.insert(number, step);
         step
