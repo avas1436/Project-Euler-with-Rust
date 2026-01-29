@@ -29,7 +29,24 @@ fn main() {
 struct Solution;
 
 impl Solution {
-    pub fn count_students(students: Vec<i32>, sandwiches: Vec<i32>) -> i32 {}
+    pub fn count_students(mut students: Vec<i32>, mut sandwiches: Vec<i32>) -> i32 {
+        let mut sand: i32 = 0;
+        let mut stud: i32 = 0;
+        let mut step = 0;
+        while step < sandwiches.len() {
+            if sand == 2 {
+                sand = sandwiches.pop().unwrap();
+            }
+            stud = students.pop().unwrap();
+            if sand == stud {
+                sand = 2;
+            } else {
+                students.insert(0, stud);
+            }
+            step += 1;
+        }
+        students.len() as i32
+    }
 }
 
 #[cfg(test)]
