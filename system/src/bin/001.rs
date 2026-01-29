@@ -13,29 +13,14 @@
 
 // The functions get and put must each run in O(1) average time complexity.
 
+struct LRUCache {}
 
-struct LRUCache {
-
-}
-
-
-/**
- * `&self` means the method takes an immutable reference.
- * If you need a mutable reference, change it to `&mut self` instead.
- */
 impl LRUCache {
+    fn new(capacity: i32) -> Self {}
 
-    fn new(capacity: i32) -> Self {
+    fn get(&mut self, key: i32) -> i32 {}
 
-    }
-
-    fn get(&self, key: i32) -> i32 {
-
-    }
-
-    fn put(&self, key: i32, value: i32) {
-
-    }
+    fn put(&mut self, key: i32, value: i32) {}
 }
 
 /**
