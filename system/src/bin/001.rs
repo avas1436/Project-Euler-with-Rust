@@ -11,17 +11,51 @@
 // add the key-value pair to the cache. If the number of keys exceeds the capacity from this
 // operation, evict the least recently used key.
 
+use std::{collections::HashMap, usize};
+
 // The functions get and put must each run in O(1) average time complexity.
-
-struct LRUCache {}
-
-impl LRUCache {
-    fn new(capacity: i32) -> Self {}
-
-    fn get(&mut self, key: i32) -> i32 {}
-
-    fn put(&mut self, key: i32, value: i32) {}
+struct Node {
+    value: usize,
+    prev: Option<usize>,
+    next: Option<usize>,
 }
+struct DoublyLinkList {
+    nodes: Vec<Node>,
+    head: Option<usize>,
+    tail: Option<usize>,
+}
+impl DoublyLinkList {
+    fn new() -> Self {
+        Self {
+            nodes: Vec::new(),
+            head: None,
+            tail: None,
+        }
+    }
+    //     fn add_node(&mut self, node: Node) -> Self {
+    //         match self.head {
+    //             Some(val) => {
+
+    //             }
+    //             None => {
+    //                 self.head = Some(1);
+    //                 self.tail = Some(1);
+    //             }
+    //         }
+    //     }
+}
+struct LRUCache {
+    cache: HashMap<usize, Node>,
+    capacity: usize,
+}
+
+// impl LRUCache {
+//     fn new(capacity: i32) -> Self {}
+
+//     fn get(&mut self, key: i32) -> i32 {}
+
+//     fn put(&mut self, key: i32, value: i32) {}
+// }
 
 /**
  * Your LRUCache object will be instantiated and called as such:
