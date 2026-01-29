@@ -22,3 +22,29 @@ and students[j] is the preference of the j th student in the initial
 queue (j = 0 is the front of the queue). Return the number of students
 that are unable to eat.
 */
+fn main() {
+    todo!("run Queue here!");
+}
+
+struct Solution;
+
+impl Solution {
+    pub fn count_students(students: Vec<i32>, sandwiches: Vec<i32>) -> i32 {}
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_count_students() {
+        assert_eq!(
+            Solution::count_students(vec![1, 1, 0, 0], vec![0, 1, 0, 1]),
+            0
+        );
+        assert_eq!(
+            Solution::count_students(vec![1, 1, 1, 0, 0, 1], vec![1, 0, 0, 0, 1, 1]),
+            3
+        );
+    }
+}
