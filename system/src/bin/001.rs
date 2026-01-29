@@ -13,45 +13,37 @@
 
 // The functions get and put must each run in O(1) average time complexity.
 
-use hashlink::LinkedHashMap;
 
 struct LRUCache {
-    capacity: usize,
-    cache: LinkedHashMap<i32, i32>,
+
 }
 
+
+/**
+ * `&self` means the method takes an immutable reference.
+ * If you need a mutable reference, change it to `&mut self` instead.
+ */
 impl LRUCache {
-    fn new(capacity: usize) -> Self {
-        LRUCache {
-            capacity,
-            cache: LinkedHashMap::new(),
-        }
+
+    fn new(capacity: i32) -> Self {
+
     }
 
-    fn get(&mut self, key: i32) -> i32 {
-        if let Some(val) = self.cache.remove(&key) {
-            self.cache.insert(key, val);
-            val
-        } else {
-            -1
-        }
+    fn get(&self, key: i32) -> i32 {
+
     }
 
-    fn put(&mut self, key: i32, value: i32) {
-        if self.cache.contains_key(&key) {
-            self.cache.remove(&key);
-            self.cache.insert(key, value);
-        } else if self.cache.len() >= self.capacity {
-            self.cache.pop_front();
-            self.cache.insert(key, value);
-        } else {
-            self.cache.insert(key, value);
-            if self.cache.len() >= self.capacity {
-                self.cache.pop_front();
-            }
-        }
+    fn put(&self, key: i32, value: i32) {
+
     }
 }
+
+/**
+ * Your LRUCache object will be instantiated and called as such:
+ * let obj = LRUCache::new(capacity);
+ * let ret_1: i32 = obj.get(key);
+ * obj.put(key, value);
+ */
 
 fn main() {
     let commands = vec![
