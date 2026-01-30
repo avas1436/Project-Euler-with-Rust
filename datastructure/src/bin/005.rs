@@ -32,14 +32,15 @@ struct Solution;
 
 impl Solution {
     pub fn count_students(students: Vec<i32>, sandwiches: Vec<i32>) -> i32 {
-        let mut sand_stack: Vec<i32> = sandwiches;
         let mut stud_queue: VecDeque<i32> = VecDeque::from(students);
         let mut failed_attempt = 0;
+        let mut sand_step = 0;
 
-        while !&sand_stack.is_empty() && !&stud_queue.len() < failed_attempt {
+        while !stud_queue.is_empty() && sandwiches.len() > failed_attempt {
             let student = stud_queue.pop_front().unwrap();
-            if sand_stack.pop().unwrap() == student {
+            if sandwiches[sand_step] == student {
                 failed_attempt = 0;
+                sand_step += 1;
                 continue;
             } else {
                 stud_queue.push_back(student);
@@ -55,14 +56,39 @@ mod tests {
     use super::*;
 
     #[test]
-    fn test_count_students() {
+    fn test_zero_answare() {
         assert_eq!(
             Solution::count_students(vec![1, 1, 0, 0], vec![0, 1, 0, 1]),
             0
         );
+    }
+
+    #[test]
+    fn test_three_students_without_lunch() {
         assert_eq!(
             Solution::count_students(vec![1, 1, 1, 0, 0, 1], vec![1, 0, 0, 0, 1, 1]),
             3
         );
+    }
+
+    #[test]
+    fn test_all_students_without_lunch() {
+        assert_eq!(
+            Solution::count_students(vec![1, 1, 1, 1, 1, 1], vec![0, 0, 0, 0, 0, 0]),
+            6
+        );
+    }
+
+    #[test]
+    fn test_all_students_with_lunch() {
+        assert_eq!(
+            Solution::count_students(vec![0, 0, 0, 0, 0, 0], vec![0, 0, 0, 0, 0, 0]),
+            0
+        );
+    }
+
+    #[test]
+    fn all_empty() {
+        assert_eq!(Solution::count_students(vec![], vec![]), 0);
     }
 }
