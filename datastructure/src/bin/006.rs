@@ -15,6 +15,8 @@ Return the time taken for the person initially at position k (0-indexed) to fini
 tickets.
 */
 
+use std::collections::VecDeque;
+
 fn main() {
     todo!("run solution here!")
 }
@@ -22,20 +24,56 @@ fn main() {
 struct Solution;
 impl Solution {
     pub fn time_required_to_buy(tickets: Vec<i32>, k: i32) -> i32 {
+        let mut queue: VecDeque<i32> = VecDeque::from(tickets);
+        let mut k_index: usize = k as usize;
+        let mut time: i32 = 0;
+        let mut ticket_push: i32 = 0;
 
+        while !queue.is_empty() {
+            if let Some(ticket) = queue.pop_front() {
+                if ticket > 1 {
+                    ticket_push = ticket - 1;
+                    queue.push_back(ticket_push);
+                    time += 1;
+                } else {
+                    ticket_push = ticket - 1;
+                    time += 1;
+                }
+            }
+            if k_index == 0 && ticket_push == 0 {
+                return time;
+            }
+            if k_index == 0 {
+                k_index = queue.len() - 1;
+            } else {
+                k_index -= 1;
+            }
+        }
+        time
     }
 }
 
-#[cfg(tests)]
+#[cfg(test)]
 mod tests {
     use super::*;
 
     #[test]
-    fn test_time_required_to_buy_6() {
+    fn time_required_to_buy_6() {
         assert_eq!(Solution::time_required_to_buy(vec![2, 3, 2], 2), 6);
     }
 
     #[test]
-    fn test_time_required_to_buy_8() {
+    fn time_required_to_buy_8() {
         assert_eq!(Solution::time_required_to_buy(vec![5, 1, 1, 1], 0), 8);
     }
+
+    #[test]
+    fn just_one_seconds() {
+        assert_eq!(Solution::time_required_to_buy(vec![1, 1, 1, 1], 0), 1);
+    }
+
+    #[test]
+    fn time_required_to_buy_4() {
+        assert_eq!(Solution::time_required_to_buy(vec![1, 1, 1, 1], 3), 4);
+    }
+}
