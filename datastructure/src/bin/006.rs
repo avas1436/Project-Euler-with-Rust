@@ -18,10 +18,15 @@ tickets.
 use std::collections::VecDeque;
 
 fn main() {
-    todo!("run solution here!")
+    let answare = Solution::time_required_to_buy(vec![2, 3, 2], 2);
+    println!(
+        "The time taken for the person initially at position k to finish buying tickets is {}",
+        answare
+    );
 }
 
 struct Solution;
+
 impl Solution {
     pub fn time_required_to_buy(tickets: Vec<i32>, k: i32) -> i32 {
         let mut queue: VecDeque<i32> = VecDeque::from(tickets);
