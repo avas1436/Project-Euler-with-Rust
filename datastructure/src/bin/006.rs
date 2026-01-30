@@ -14,3 +14,28 @@ leave the line.
 Return the time taken for the person initially at position k (0-indexed) to finish buying
 tickets.
 */
+
+fn main() {
+    todo!("run solution here!")
+}
+
+struct Solution;
+impl Solution {
+    pub fn time_required_to_buy(tickets: Vec<i32>, k: i32) -> i32 {
+
+    }
+}
+
+#[cfg(tests)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_time_required_to_buy_6() {
+        assert_eq!(Solution::time_required_to_buy(vec![2, 3, 2], 2), 6);
+    }
+
+    #[test]
+    fn test_time_required_to_buy_8() {
+        assert_eq!(Solution::time_required_to_buy(vec![5, 1, 1, 1], 0), 8);
+    }
