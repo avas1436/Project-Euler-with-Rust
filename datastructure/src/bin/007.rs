@@ -81,6 +81,7 @@ impl MyQueue {
 mod tests {
     use super::*;
 
+    #[derive(Debug)]
     struct MyQueueWorld {
         command: Vec<String>,
         input: Vec<Vec<i32>>,
@@ -92,22 +93,22 @@ mod tests {
         }
 
         fn run(&self) -> Vec<Option<i32>> {
-            let mut ans: Option<MyQueue> = None;
+            let mut ans: MyQueue = MyQueue::new();
             let mut result: Vec<Option<i32>> = Vec::new();
 
             for (cmd, inp) in self.command.iter().zip(self.input.iter()) {
                 match cmd.as_str() {
                     "MyQueue" => {
-                        ans = Some(MyQueue::new());
                         result.push(None);
                     }
                     "push" => {
-                        ans.as_mut().unwrap().push(inp[0]);
+                        ans.push(inp[0]);
                         result.push(None);
                     }
                     "peek" => result.push(Some(ans.peek())),
                     "pop" => result.push(Some(ans.pop())),
                     "empty" => result.push(Some(ans.empty() as i32)),
+                    _ => println!("nothing!"),
                 }
             }
             result
@@ -116,7 +117,7 @@ mod tests {
 
     #[test]
     fn leet_code_test() {
-        let mut result = MyQueueWorld::new(
+        let result = MyQueueWorld::new(
             vec![
                 "MyQueue".to_string(),
                 "push".to_string(),
@@ -127,7 +128,10 @@ mod tests {
             ],
             vec![vec![], vec![1], vec![2], vec![], vec![], vec![]],
         );
-        result.run();
-        assert_eq!(result, vec![None, None, None, Some(1), Some(1), None]);
+        let final_result = result.run();
+        assert_eq!(
+            final_result,
+            vec![None, None, None, Some(1), Some(1), Some(0)]
+        );
     }
 }
