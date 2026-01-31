@@ -20,7 +20,17 @@ Notes:
 */
 
 fn main() {
-    todo!("answare run here!");
+    // Your MyQueue object will be instantiated and called as such:
+    let mut obj = MyQueue::new();
+    obj.push(1);
+    obj.push(2);
+    obj.push(3);
+    let ret_2: i32 = obj.pop();
+    println!("FIFO is : {ret_2}");
+    let ret_3: i32 = obj.peek();
+    println!("FIFO is : {ret_3}");
+    let ret_4: bool = obj.empty();
+    println!("is empty : {ret_4}");
 }
 
 struct MyQueue {
@@ -66,15 +76,6 @@ impl MyQueue {
         return self.fifo.is_empty() && self.lifo.is_empty();
     }
 }
-
-/**
- * Your MyQueue object will be instantiated and called as such:
- * let obj = MyQueue::new();
- * obj.push(x);
- * let ret_2: i32 = obj.pop();
- * let ret_3: i32 = obj.peek();
- * let ret_4: bool = obj.empty();
- */
 
 #[cfg(test)]
 mod tests {
