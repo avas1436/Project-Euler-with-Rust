@@ -23,22 +23,48 @@ fn main() {
     todo!("answare run here!");
 }
 
-struct MyQueue {}
+struct MyQueue {
+    fifo: Vec<i32>,
+    lifo: Vec<i32>,
+}
 
-/**
- * `&self` means the method takes an immutable reference.
- * If you need a mutable reference, change it to `&mut self` instead.
- */
 impl MyQueue {
-    fn new() -> Self {}
+    fn new() -> Self {
+        Self {
+            lifo: Vec::new(),
+            fifo: Vec::new(),
+        }
+    }
 
-    fn push(&self, x: i32) {}
+    fn push(&mut self, x: i32) {
+        self.lifo.push(x);
+    }
 
-    fn pop(&self) -> i32 {}
+    fn pop(&mut self) -> i32 {
+        if self.fifo.is_empty() {
+            while self.lifo.len() > 1 {
+                self.fifo.push(self.lifo.pop().unwrap());
+            }
+            return self.lifo.pop().unwrap();
+        } else {
+            return self.fifo.pop().unwrap();
+        }
+    }
 
-    fn peek(&self) -> i32 {}
+    fn peek(&mut self) -> i32 {
+        if self.fifo.is_empty() {
+            while !self.lifo.is_empty() {
+                self.fifo.push(self.lifo.pop().unwrap());
+            }
+            return *self.fifo.last().unwrap();
+        } else {
+            return *self.fifo.last().unwrap();
+        }
+    }
 
-    fn empty(&self) -> bool {}
+    fn empty(&self) -> bool {
+        return self.fifo.is_empty() && self.lifo.is_empty();
+    }
 }
 
 /**
