@@ -16,14 +16,37 @@ At the end of the game, there is at most one stone left.
 Return the weight of the last remaining stone. If there are no stones left, return 0.
 */
 
+use std::collections::BinaryHeap;
+
 fn main() {
-    todo!("solver run here!");
+    let ans = Solution::last_stone_weight(vec![2, 7, 4, 1, 8, 1]);
+    println!("answare is : {}", ans);
 }
 
 struct Solution;
 
 impl Solution {
-    pub fn last_stone_weight(stones: Vec<i32>) -> i32 {}
+    pub fn last_stone_weight(stones: Vec<i32>) -> i32 {
+        let mut heap: BinaryHeap<i32> = BinaryHeap::from(stones);
+        let mut y: i32;
+        let mut x: i32;
+
+        while heap.len() > 1 {
+            y = heap.pop().unwrap();
+            x = heap.pop().unwrap();
+
+            if x == y {
+                continue;
+            } else {
+                heap.push(y - x);
+            }
+        }
+        if heap.len() == 0 {
+            0
+        } else {
+            heap.pop().unwrap()
+        }
+    }
 }
 
 #[cfg(test)]
