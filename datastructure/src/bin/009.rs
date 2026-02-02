@@ -1,3 +1,5 @@
+use std::collections::BinaryHeap;
+
 /*
 Q2. Find K Pairs with Smallest Sums
 
@@ -16,7 +18,27 @@ fn main() {
 struct Solution;
 
 impl Solution {
-    pub fn k_smallest_pairs(nums1: Vec<i32>, nums2: Vec<i32>, k: i32) -> Vec<Vec<i32>> {}
+    pub fn k_smallest_pairs(nums1: Vec<i32>, nums2: Vec<i32>, k: i32) -> Vec<Vec<i32>> {
+        let mut ans: Vec<Vec<i32>> = Vec::new();
+        let mut num1_bh = BinaryHeap::from(nums1.clone());
+        let mut num2_bh = BinaryHeap::from(nums1.clone());
+        let limit: usize;
+
+        if nums1.len() <= nums2.len() {
+            limit = nums1.len() - k as usize;
+        } else {
+            limit = nums2.len() - k as usize;
+        }
+
+        for _ in 0..limit {
+            num1_bh.pop();
+            num2_bh.pop();
+        }
+        for _ in 0..limit {
+            ans.push(vec![num1_bh.pop().unwrap(), num2_bh.pop().unwrap()]);
+        }
+        ans
+    }
 }
 
 #[cfg(test)]
