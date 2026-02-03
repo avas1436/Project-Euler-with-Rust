@@ -22,7 +22,11 @@ fn main() {
 struct Solution;
 
 impl Solution {
-    pub fn k_smallest_pairs(nums1: Vec<i32>, nums2: Vec<i32>, k: i32) -> Vec<Vec<i32>> {}
+    pub fn k_smallest_pairs(nums1: Vec<i32>, nums2: Vec<i32>, k: i32) -> Vec<Vec<i32>> {
+        let mut heap: BinaryHeap<Reverse<(i32, usize, usize)>> = BinaryHeap::new();
+
+        ans
+    }
 }
 
 #[cfg(test)]
