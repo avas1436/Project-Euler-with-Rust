@@ -23,7 +23,21 @@ struct Solution;
 
 impl Solution {
     pub fn k_smallest_pairs(nums1: Vec<i32>, nums2: Vec<i32>, k: i32) -> Vec<Vec<i32>> {
+        let mut ans: Vec<Vec<i32>> = Vec::new();
         let mut heap: BinaryHeap<Reverse<(i32, usize, usize)>> = BinaryHeap::new();
+        let limit: usize = k as usize;
+
+        for i in 0..nums1.len().min(limit) {
+            heap.push(Reverse(((nums1[i] + nums2[0]), i, 0)));
+        }
+
+        while ans.len() < limit && !heap.is_empty() {
+            let Reverse((_, i, j)) = heap.pop().unwrap();
+            ans.push(vec![nums1[i], nums2[j]]);
+            if j + 1 < nums2.len() {
+                heap.push(Reverse(((nums1[i] + nums2[j + 1]), i, j + 1)));
+            }
+        }
 
         ans
     }
