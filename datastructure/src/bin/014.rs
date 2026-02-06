@@ -5,13 +5,26 @@ Given a string s, check if it can be constructed by taking a substring of it and
 appending multiple copies of the substring together.
  */
 fn main() {
-    todo!("problem solve here");
+    let s = "abab".to_string();
+    println!("{}", Solution::repeated_substring_pattern(s));
 }
 
 struct Solution;
 
 impl Solution {
-    pub fn repeated_substring_pattern(s: String) -> bool {}
+    pub fn repeated_substring_pattern(s: String) -> bool {
+        for i in 1..((s.len() / 2) + 1) {
+            if s.len() % i == 0 {
+                let substring = &s[0..i];
+                if s == substring.repeat(s.len() / i) {
+                    return true;
+                }
+            } else {
+                continue;
+            }
+        }
+        false
+    }
 }
 
 #[cfg(test)]
