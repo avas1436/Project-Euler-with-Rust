@@ -49,28 +49,22 @@ struct Solution;
 impl Solution {
     fn mask_email(email: String) -> String {
         let parts: Vec<&str> = email.split('@').collect();
-        let name: Vec<&str> = parts[0].split('.').collect();
-        let domain = parts[1];
-        format!(
-            "{}*****{}@{}",
-            name.iter().next().unwrap(),
-            name.last().unwrap(),
-            domain
-        )
-        .to_string()
+        let name: Vec<char> = parts[0].to_lowercase().chars().collect();
+        let domain = parts[1].to_lowercase();
+        format!("{}*****{}@{}", name[0], name.last().unwrap(), domain).to_string()
     }
 
     fn mask_phone(phone: String) -> String {
         let phone_number: Vec<char> = phone.chars().rev().filter(|n| n.is_numeric()).collect();
-        let local: Vec<char> = phone_number[0..10].iter().rev().cloned().collect();
+        let local: Vec<char> = phone_number[0..4].iter().rev().cloned().collect();
         let country: Vec<char> = phone_number[10..].iter().rev().cloned().collect();
         let country_code = country.len();
         match country_code {
-            0 => format!("***-***-{}", local.iter().rev().collect::<String>()),
-            1 => format!("+*-***-***-{}", local.iter().rev().collect::<String>()),
-            2 => format!("+**-***-***-{}", local.iter().rev().collect::<String>()),
-            3 => format!("+***-***-***-{}", local.iter().rev().collect::<String>()),
-            _ => format!("+****-***-***-{}", local.iter().rev().collect::<String>()),
+            0 => format!("***-***-{}", local.iter().collect::<String>()),
+            1 => format!("+*-***-***-{}", local.iter().collect::<String>()),
+            2 => format!("+**-***-***-{}", local.iter().collect::<String>()),
+            3 => format!("+***-***-***-{}", local.iter().collect::<String>()),
+            _ => format!("+****-***-***-{}", local.iter().collect::<String>()),
         }
     }
 
@@ -107,7 +101,7 @@ mod tests {
     fn long_email() {
         assert_eq!(
             Solution::mask_pii("abas.zade@outlook.com".to_string()),
-            "a*****b@qq.com"
+            "a*****e@outlook.com"
         );
     }
 
