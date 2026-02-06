@@ -13,7 +13,9 @@ A shift on s consists of moving the leftmost character of s to the rightmost pos
 use std::collections::VecDeque;
 
 fn main() {
-    todo!("problem solve here");
+    let s = "abcde".to_string();
+    let goal = "abced".to_string();
+    println!("{}", Solution::rotate_string(s, goal));
 }
 
 struct Solution;
