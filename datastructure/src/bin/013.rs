@@ -39,3 +39,68 @@ To mask a phone number:
         "+***-***-***-XXXX" if the country code has 3 digits.
     "XXXX" is the last 4 digits of the local number.
  */
+
+fn main() {
+    todo!("prolem solve here");
+}
+
+struct Solution;
+
+impl Solution {
+    pub fn mask_pii(s: String) -> String {}
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn leetcode_email() {
+        assert_eq!(
+            Solution::mask_pii("LeetCode@LeetCode.com".to_string()),
+            "l*****e@leetcode.com"
+        );
+    }
+
+    fn fake_email() {
+        assert_eq!(
+            Solution::mask_pii("AB@qq.com".to_string()),
+            "a*****b@qq.com"
+        );
+    }
+
+    fn long_email() {
+        assert_eq!(
+            Solution::mask_pii("abas.zade@outlook.com".to_string()),
+            "a*****b@qq.com"
+        );
+    }
+
+    fn us_phone_number() {
+        assert_eq!(
+            Solution::mask_pii("1(234)567-890".to_string()),
+            "***-***-7890"
+        );
+    }
+
+    fn iran_phone_number() {
+        assert_eq!(
+            Solution::mask_pii("86-(10)12345678".to_string()),
+            "+**-***-***-5678"
+        );
+    }
+
+    fn china_phone_number() {
+        assert_eq!(
+            Solution::mask_pii("86-(10)12345678".to_string()),
+            "+**-***-***-5678"
+        );
+    }
+
+    fn japan_phone_number() {
+        assert_eq!(
+            Solution::mask_pii("86-(10)12345678".to_string()),
+            "+**-***-***-5678"
+        );
+    }
+}
