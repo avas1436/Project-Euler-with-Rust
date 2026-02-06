@@ -16,7 +16,18 @@ fn main() {
 struct Solution;
 
 impl Solution {
-    pub fn repeated_string_match(a: String, b: String) -> i32 {}
+    pub fn repeated_string_match(a: String, b: String) -> i32 {
+        // این خط مشخص می کند حداقل تعداد تکراری که باید انجام شود تا b در a باشد
+        let k = (b.len() + a.len() - 1) / a.len();
+
+        if a.repeat(k).contains(&b) {
+            k as i32
+        } else if a.repeat(k + 1).contains(&b) {
+            (k + 1) as i32
+        } else {
+            -1
+        }
+    }
 }
 
 #[cfg(test)]
