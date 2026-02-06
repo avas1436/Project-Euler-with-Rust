@@ -47,7 +47,40 @@ fn main() {
 struct Solution;
 
 impl Solution {
-    pub fn mask_pii(s: String) -> String {}
+    fn mask_email(email: String) -> String {
+        let parts: Vec<&str> = email.split('@').collect();
+        let name: Vec<&str> = parts[0].split('.').collect();
+        let domain = parts[1];
+        format!(
+            "{}*****{}@{}",
+            name.iter().next().unwrap(),
+            name.last().unwrap(),
+            domain
+        )
+        .to_string()
+    }
+
+    fn mask_phone(phone: String) -> String {
+        let phone_number: Vec<char> = phone.chars().rev().filter(|n| n.is_numeric()).collect();
+        let local: Vec<char> = phone_number[0..10].iter().rev().cloned().collect();
+        let country: Vec<char> = phone_number[10..].iter().rev().cloned().collect();
+        let country_code = country.len();
+        match country_code {
+            0 => format!("***-***-{}", local.iter().rev().collect::<String>()),
+            1 => format!("+*-***-***-{}", local.iter().rev().collect::<String>()),
+            2 => format!("+**-***-***-{}", local.iter().rev().collect::<String>()),
+            3 => format!("+***-***-***-{}", local.iter().rev().collect::<String>()),
+            _ => format!("+****-***-***-{}", local.iter().rev().collect::<String>()),
+        }
+    }
+
+    pub fn mask_pii(s: String) -> String {
+        if s.contains('@') {
+            return Self::mask_email(s);
+        } else {
+            return Self::mask_phone(s);
+        }
+    }
 }
 
 #[cfg(test)]
@@ -62,6 +95,7 @@ mod tests {
         );
     }
 
+    #[test]
     fn fake_email() {
         assert_eq!(
             Solution::mask_pii("AB@qq.com".to_string()),
@@ -69,6 +103,7 @@ mod tests {
         );
     }
 
+    #[test]
     fn long_email() {
         assert_eq!(
             Solution::mask_pii("abas.zade@outlook.com".to_string()),
@@ -76,6 +111,7 @@ mod tests {
         );
     }
 
+    #[test]
     fn us_phone_number() {
         assert_eq!(
             Solution::mask_pii("1(234)567-890".to_string()),
@@ -83,6 +119,7 @@ mod tests {
         );
     }
 
+    #[test]
     fn iran_phone_number() {
         assert_eq!(
             Solution::mask_pii("86-(10)12345678".to_string()),
@@ -90,6 +127,7 @@ mod tests {
         );
     }
 
+    #[test]
     fn china_phone_number() {
         assert_eq!(
             Solution::mask_pii("86-(10)12345678".to_string()),
@@ -97,6 +135,7 @@ mod tests {
         );
     }
 
+    #[test]
     fn japan_phone_number() {
         assert_eq!(
             Solution::mask_pii("86-(10)12345678".to_string()),
