@@ -13,13 +13,33 @@ and you should convert all lowercase letters to uppercase.
 Return the reformatted license key.
  */
 fn main() {
-    todo!("problem solve here");
+    let s = "5F3Z-2e-9-w";
+    let result = Solution::license_key_formatting(s.to_string(), 4);
+    println!("{}", result);
 }
 
 struct Solution;
 
 impl Solution {
-    pub fn license_key_formatting(s: String, k: i32) -> String {}
+    pub fn license_key_formatting(s: String, k: i32) -> String {
+        let mut result = String::new();
+        let mut chars: String = s
+            .chars()
+            .filter(|&c| c != '-')
+            .map(|c| c.to_ascii_uppercase())
+            .collect();
+
+        let mut count = 0;
+        while !chars.is_empty() {
+            if count == k {
+                count = 0;
+                result.push('-');
+            }
+            result.push(chars.pop().unwrap());
+            count += 1;
+        }
+        result.chars().rev().collect()
+    }
 }
 
 #[cfg(test)]
