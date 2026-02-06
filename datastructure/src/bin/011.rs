@@ -37,21 +37,21 @@ mod tests {
     use super::*;
 
     #[test]
-    fn detect_USA() {
+    fn detect_usa() {
         assert_eq!(Solution::detect_capital_use("USA".to_string()), true);
     }
     #[test]
-    fn detect_FlaG() {
+    fn detect_flag() {
         assert_eq!(Solution::detect_capital_use("FlaG".to_string()), false);
     }
 
     #[test]
-    fn detect_Google() {
+    fn detect_google() {
         assert_eq!(Solution::detect_capital_use("Google".to_string()), true);
     }
 
     #[test]
-    fn detect_Leetcode() {
+    fn detect_leetcode() {
         assert_eq!(Solution::detect_capital_use("Leetcode".to_string()), true);
     }
 }
