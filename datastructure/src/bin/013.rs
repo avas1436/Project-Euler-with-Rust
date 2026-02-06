@@ -41,7 +41,9 @@ To mask a phone number:
  */
 
 fn main() {
-    todo!("prolem solve here");
+    let email = "abas.zade@outlook.com".to_string();
+    let masked_email = Solution::mask_pii(email);
+    println!("Masked Email: {}", masked_email);
 }
 
 struct Solution;
