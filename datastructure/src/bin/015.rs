@@ -17,7 +17,22 @@ fn main() {
 struct Solution;
 
 impl Solution {
-    pub fn rotate_string(s: String, goal: String) -> bool {}
+    pub fn rotate_string(s: String, goal: String) -> bool {
+        let slen = s.len();
+        if slen != goal.len() {
+            return false;
+        }
+        let mut str: Vec<char> = s.chars().collect();
+        let goal: Vec<char> = goal.chars().collect();
+        for _ in 0..slen as usize {
+            if str == goal {
+                return true;
+            }
+            let c = str.remove(0);
+            str.push(c);
+        }
+        false
+    }
 }
 
 #[cfg(test)]
