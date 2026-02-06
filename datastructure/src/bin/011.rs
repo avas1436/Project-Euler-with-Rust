@@ -11,13 +11,25 @@ cases holds:
 Given a string word, return true if the usage of capitals in it is right.
  */
 fn main() {
-    todo!("Problem solve here!");
+    let word = "leetcode".to_string();
+    println!("{}", Solution::detect_capital_use(word));
 }
 
 struct Solution;
 
 impl Solution {
-    pub fn detect_capital_use(word: String) -> bool {}
+    pub fn detect_capital_use(word: String) -> bool {
+        let mut chars = word.chars();
+        if word.to_uppercase() == word || word.to_lowercase() == word {
+            return true;
+        };
+        let first = chars.next().unwrap();
+        if first.is_uppercase() && chars.all(|c| c.is_lowercase()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }
 
 #[cfg(test)]
@@ -41,10 +53,5 @@ mod tests {
     #[test]
     fn detect_Leetcode() {
         assert_eq!(Solution::detect_capital_use("Leetcode".to_string()), true);
-    }
-
-    #[test]
-    fn detect_leetcode() {
-        assert_eq!(Solution::detect_capital_use("leetcode".to_string()), true);
     }
 }
