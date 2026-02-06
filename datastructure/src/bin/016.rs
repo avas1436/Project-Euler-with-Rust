@@ -10,7 +10,9 @@ times is "abcabc".
  */
 
 fn main() {
-    todo!("problem solve here");
+    let a = "abc".to_string();
+    let b = "abcabcabc".to_string();
+    println!("{}", Solution::repeated_string_match(a, b));
 }
 
 struct Solution;
