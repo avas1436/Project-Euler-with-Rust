@@ -8,3 +8,38 @@ You can either start from the step with index 0, or the step with index 1.
 
 Return the minimum cost to reach the top of the floor.
  */
+
+fn main() {
+    let _ = Solution::min_cost_climbing_stairs(vec![10, 15, 20]);
+}
+
+struct Solution;
+
+impl Solution {
+    pub fn min_cost_climbing_stairs(cost: Vec<i32>) -> i32 {
+        todo!("solve here");
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn example_1() {
+        let cost = vec![10, 15, 20];
+        assert_eq!(Solution::min_cost_climbing_stairs(cost), 15);
+    }
+
+    #[test]
+    fn example_2() {
+        let cost = vec![1, 100, 1, 1, 1, 100, 1, 1, 100, 1];
+        assert_eq!(Solution::min_cost_climbing_stairs(cost), 6);
+    }
+
+    #[test]
+    fn edge_small() {
+        let cost = vec![5, 10];
+        assert_eq!(Solution::min_cost_climbing_stairs(cost), 5);
+    }
+}
