@@ -8,7 +8,7 @@ ways can you climb to the top?
 */
 
 fn main() {
-    todo!("problem solve here");
+    let _ = Solution::climb_stairs(0);
 }
 
 struct Solution;
