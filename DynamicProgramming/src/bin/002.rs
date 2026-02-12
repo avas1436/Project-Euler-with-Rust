@@ -17,7 +17,16 @@ struct Solution;
 
 impl Solution {
     pub fn min_cost_climbing_stairs(cost: Vec<i32>) -> i32 {
-        todo!("solve here");
+        let mut prev2 = cost[0];
+        let mut prev1 = cost[1];
+
+        for i in 2..cost.len() {
+            let current = cost[i] + std::cmp::min(prev1, prev2);
+            prev2 = prev1;
+            prev1 = current;
+        }
+
+        std::cmp::min(prev1, prev2)
     }
 }
 
