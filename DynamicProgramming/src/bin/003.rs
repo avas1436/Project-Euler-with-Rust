@@ -49,4 +49,80 @@ mod tests {
     fn test_rob3() {
         assert_eq!(Solution::rob(vec![2, 1, 1, 2]), 3);
     }
+
+    #[test]
+    fn test_empty() {
+        assert_eq!(Solution::rob(vec![]), 0);
+    }
+
+    #[test]
+    fn test_single_house() {
+        assert_eq!(Solution::rob(vec![5]), 5);
+    }
+
+    #[test]
+    fn test_two_houses() {
+        assert_eq!(Solution::rob(vec![2, 3]), 3);
+    }
+
+    #[test]
+    fn test_example_1() {
+        assert_eq!(Solution::rob(vec![1, 2, 3, 1]), 4);
+    }
+
+    #[test]
+    fn test_example_2() {
+        assert_eq!(Solution::rob(vec![2, 7, 9, 3, 1]), 12);
+    }
+
+    #[test]
+    fn test_example_3() {
+        assert_eq!(Solution::rob(vec![2, 1, 1, 2]), 3);
+    }
+
+    #[test]
+    fn test_all_same() {
+        assert_eq!(Solution::rob(vec![5, 5, 5, 5]), 10);
+    }
+
+    #[test]
+    fn test_increasing() {
+        assert_eq!(Solution::rob(vec![1, 2, 3, 4, 5]), 9);
+    }
+
+    #[test]
+    fn test_decreasing() {
+        assert_eq!(Solution::rob(vec![5, 4, 3, 2, 1]), 9);
+    }
+
+    #[test]
+    fn test_with_zeros() {
+        assert_eq!(Solution::rob(vec![0, 0, 0, 0]), 0);
+    }
+
+    #[test]
+    fn test_zeros_between() {
+        assert_eq!(Solution::rob(vec![2, 0, 2]), 4);
+    }
+
+    #[test]
+    fn test_zero_edges() {
+        assert_eq!(Solution::rob(vec![0, 5, 0, 5]), 10);
+    }
+
+    #[test]
+    fn test_long_sequence() {
+        assert_eq!(Solution::rob(vec![6, 7, 1, 30, 8, 2, 4]), 41);
+    }
+
+    #[test]
+    fn test_alternating_large() {
+        assert_eq!(Solution::rob(vec![100, 1, 100, 1, 100]), 300);
+    }
+
+    #[test]
+    fn test_many_small_values() {
+        let nums = vec![1; 20];
+        assert_eq!(Solution::rob(nums), 10);
+    }
 }
