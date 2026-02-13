@@ -18,7 +18,17 @@ fn main() {
 struct Solution;
 
 impl Solution {
-    pub fn rob(nums: Vec<i32>) -> i32 {}
+    pub fn rob(nums: Vec<i32>) -> i32 {
+        let mut a = nums[0];
+        let mut b = nums[1];
+
+        for i in 2..nums.len() {
+            let c = std::cmp::max(nums[i] + a, b);
+            a = b;
+            b = c;
+        }
+        b
+    }
 }
 
 #[cfg(test)]
