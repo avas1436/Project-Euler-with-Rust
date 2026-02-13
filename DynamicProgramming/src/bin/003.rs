@@ -23,18 +23,17 @@ impl Solution {
             return 0;
         }
         let mut a = nums[0];
-        if nums.len() > 1 {
-            let mut b = nums[1];
-
-            for i in 2..nums.len() {
-                let c = std::cmp::max(nums[i] + a, b);
-                a = b;
-                b = c;
-            }
-            b
-        } else {
+        if nums.len() == 1 {
             return a;
         }
+        let mut b = std::cmp::max(a, nums[1]);
+
+        for i in 2..nums.len() {
+            let c = std::cmp::max(nums[i] + a, b);
+            a = b;
+            b = c;
+        }
+        b
     }
 }
 
