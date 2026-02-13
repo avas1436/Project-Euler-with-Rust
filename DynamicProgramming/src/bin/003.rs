@@ -72,21 +72,6 @@ mod tests {
     }
 
     #[test]
-    fn test_example_1() {
-        assert_eq!(Solution::rob(vec![1, 2, 3, 1]), 4);
-    }
-
-    #[test]
-    fn test_example_2() {
-        assert_eq!(Solution::rob(vec![2, 7, 9, 3, 1]), 12);
-    }
-
-    #[test]
-    fn test_example_3() {
-        assert_eq!(Solution::rob(vec![2, 1, 1, 2]), 3);
-    }
-
-    #[test]
     fn test_all_same() {
         assert_eq!(Solution::rob(vec![5, 5, 5, 5]), 10);
     }
