@@ -19,15 +19,22 @@ struct Solution;
 
 impl Solution {
     pub fn rob(nums: Vec<i32>) -> i32 {
-        let mut a = nums[0];
-        let mut b = nums[1];
-
-        for i in 2..nums.len() {
-            let c = std::cmp::max(nums[i] + a, b);
-            a = b;
-            b = c;
+        if nums.is_empty() {
+            return 0;
         }
-        b
+        let mut a = nums[0];
+        if nums.len() > 1 {
+            let mut b = nums[1];
+
+            for i in 2..nums.len() {
+                let c = std::cmp::max(nums[i] + a, b);
+                a = b;
+                b = c;
+            }
+            b
+        } else {
+            return a;
+        }
     }
 }
 
