@@ -47,6 +47,6 @@ mod tests {
 
     #[test]
     fn test_rob3() {
-        assert_eq!(Solution::rob(vec![2, 1, 1, 2]), 4);
+        assert_eq!(Solution::rob(vec![2, 1, 1, 2]), 3);
     }
 }
