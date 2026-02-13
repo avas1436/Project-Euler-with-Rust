@@ -23,18 +23,17 @@ impl Solution {
             return 0;
         }
         let mut a = nums[0];
-        if nums.len() > 1 {
-            let mut b = nums[1];
-
-            for i in 2..nums.len() {
-                let c = std::cmp::max(nums[i] + a, b);
-                a = b;
-                b = c;
-            }
-            b
-        } else {
+        if nums.len() == 1 {
             return a;
         }
+        let mut b = std::cmp::max(a, nums[1]);
+
+        for i in 2..nums.len() {
+            let c = std::cmp::max(nums[i] + a, b);
+            a = b;
+            b = c;
+        }
+        b
     }
 }
 
@@ -54,7 +53,7 @@ mod tests {
 
     #[test]
     fn test_rob3() {
-        assert_eq!(Solution::rob(vec![2, 1, 1, 2]), 3);
+        assert_eq!(Solution::rob(vec![2, 1, 1, 2]), 4);
     }
 
     #[test]
@@ -70,21 +69,6 @@ mod tests {
     #[test]
     fn test_two_houses() {
         assert_eq!(Solution::rob(vec![2, 3]), 3);
-    }
-
-    #[test]
-    fn test_example_1() {
-        assert_eq!(Solution::rob(vec![1, 2, 3, 1]), 4);
-    }
-
-    #[test]
-    fn test_example_2() {
-        assert_eq!(Solution::rob(vec![2, 7, 9, 3, 1]), 12);
-    }
-
-    #[test]
-    fn test_example_3() {
-        assert_eq!(Solution::rob(vec![2, 1, 1, 2]), 3);
     }
 
     #[test]
