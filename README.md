@@ -1,12 +1,20 @@
-# Project Euler Solutions in Rust
+# Rust Algorithm & Problem Solving (Project Euler + LeetCode)
 
 [![Rust](https://img.shields.io/badge/rust-1.70%2B-orange.svg)](https://www.rust-lang.org)
 
-A collection of Project Euler problem solutions implemented in Rust, focusing on performance, clean code, and learning Rust concepts.
+A collection of algorithmic problem solutions implemented in Rust, focusing on performance, clean code, and fundamental computer science concepts.
 
-## 🎯 About
+## About
 
-This repository contains my solutions to [Project Euler](https://projecteuler.net/) problems implemented in Rust. The goal is to practice Rust programming, learn efficient algorithms, and improve problem-solving skills.
+This repository contains my solutions to selected problems from Project Euler and LeetCode, implemented in Rust as part of my continuous effort to strengthen problem-solving skills and deepen understanding of low-level performance-oriented programming.
 
 **Note**: In accordance with Project Euler's request, please do not share solutions publicly. This repository serves as a personal learning journey.
 
+## Topics Covered
+
+* Mathematics & Number Theory
+* Arrays & Strings
+* Recursion & Dynamic Programming
+* Hash Maps & Sets
+* Sorting & Searching Algorithms
+* system design
